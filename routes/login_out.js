@@ -1,5 +1,6 @@
 // GET customer login
 // create and connect with nav and login styles sheet
+module.exports = function(app, users){
 
 app.get("/login", (req, res) => {
   if (users[req.body.user_id]) {
@@ -52,3 +53,4 @@ app.post("/logout", (req, res) => {
   res.redirect(`/login`);
 });
 
+}

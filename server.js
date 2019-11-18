@@ -49,6 +49,7 @@ app.use("/api/widgets", widgetsRoutes(db));
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
+require('./routes/login_out.js')(app, users);
 
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);

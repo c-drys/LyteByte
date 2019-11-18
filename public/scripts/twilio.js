@@ -6,7 +6,7 @@ const client = require('twilio')(accountSid, authToken);
 client.messages.create({
   to: '+12368864342',
   from: '+12563776706',
-  body: 'YOOOOOOO, this is coming from my js file!!'
+  body: 'You\'re order has been received. We will text shortly when you\'re order is ready for pick up.'
 })
 .then((message) => console.log(message.sid))
 

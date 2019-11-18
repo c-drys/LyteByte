@@ -40,7 +40,7 @@ CREATE TABLE dishes (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) NOT NULL,
   price INTEGER NOT NULL,
-  image varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 

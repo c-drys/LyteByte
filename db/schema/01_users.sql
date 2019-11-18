@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS histories_stretch CASCADE;
 
 CREATE TABLE users (
   id SERIAL PRIMARY KEY NOT NULL,
-  name varchar(255) NOT NULL,
+  name VARCHAR(255) NOT NULL,
   phone BIGINT NOT NULL,
   email varchar(50) NOT NULL,
   password varchar(50) NOT NULL,
@@ -40,7 +40,7 @@ CREATE TABLE dishes (
   id SERIAL PRIMARY KEY NOT NULL,
   name varchar(255) NOT NULL,
   price INTEGER NOT NULL,
-  image varchar(255) NOT NULL,
+  description varchar(255) NOT NULL,
   category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 

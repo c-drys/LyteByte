@@ -28,6 +28,7 @@ router.get("/login", (req, res) => {
   }  if (!bcrypt.compareSync(req.body.password, user.password)) {
     return res.status(403).send('Oops...try again or request reminder.')
 
+
   } req.session.user_id = user.id
     res.redirect(`/menu`);
 

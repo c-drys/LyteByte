@@ -22,6 +22,7 @@ app.get("/login", (req, res) => {
 // install bcryt for hashing user passwords
 
   app.post("/login", (req, res) => {
+
     const user = getUserByEmail(req.body.email, users);
 
   if (req.body.email !== user.email) {

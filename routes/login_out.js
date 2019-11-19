@@ -24,21 +24,46 @@ app.get("/login", (req, res) => {
 // POST customer login
 // install bcryt for hashing user passwords
 
-  app.post("/login", (req, res) => {
+  // app.post("/login", (req, res) => {
 
-    db.query(`SELECT email FROM users; `)
+  //  if (!getUserByEmail(req.body.email || req.body.password)) {
+  //   return db.query(
+  //   `SELECT email
+  //     FROM users
+  //     WHERE email = $1
+  //       AND password = $2; `)
+  //     .then(users => {
+
+  //         res.error("💩")
+  //         return;
+  //       }
+  //       res.redirect(`/menu`);
+  //     })
+  //     .catch(error => {
+  //       res.send(error ("💩");
+  //     });
+  // });
+
+
+  app.post('/login', (req, res) => {
+
+    return db.query(`
+  SELECT *
+  FROM users
+  WHERE email = $1
+  `, [req.body.email])
       .then(users => {
-        if (!getUserByEmail(req.body, users)) {
-          res.error("💩")
+        console.log(users)
+        if (!users) {
+          res.send({error: "error 💩"});
           return;
         }
-        res.redirect(`/menu`);
+        req.body.email = user.email;
+        res.send({user: {name: users.name, email: users.email, id: users.id}});
+        res.redirect('/menu');
       })
-      .catch(error => {
-        res.send(error);
-      });
+      .catch(e => res.send(e));
   });
-
 
 // =====================================================
 

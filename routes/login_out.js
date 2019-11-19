@@ -1,8 +1,11 @@
 // GET customer login
 // create and connect with nav and login styles sheet
-module.exports = function(app, users){
+const express = require('express');
+const router  = express.Router();
 
-app.get("/login", (req, res) => {
+module.exports = function() {
+
+router.get("/login", (req, res) => {
   if (users[req.body.user_id]) {
    return res.redirect(`/menu`);
  };
@@ -16,7 +19,7 @@ app.get("/login", (req, res) => {
 // POST customer login
 // install bcryt for hashing user passwords
 
-  app.post("/login", (req, res) => {
+  router.post("/login", (req, res) => {
     const user = getUserByEmail(req.body.email, users);
 
   if (req.body.email !== user.email) {
@@ -37,7 +40,7 @@ app.get("/login", (req, res) => {
 // GET user login redirect
 // redirect to login page
 // attach to update cart or place order stage?
-app.get('/menu', (req, res) => {
+router.get('/menu', (req, res) => {
   const currentUser = req.session.user_id;
   if (!currentUser) {
     res.redirect(`/login`);
@@ -48,9 +51,10 @@ app.get('/menu', (req, res) => {
 // =====================================================
 
 // add POST logout to clear customer info
-app.post("/logout", (req, res) => {
+router.post("/logout", (req, res) => {
   req.session = null
   res.redirect(`/login`);
 });
 
+return router;
 }

@@ -24,19 +24,35 @@ app.get("/login", (req, res) => {
 // POST customer login
 // install bcryt for hashing user passwords
 
+  // app.post("/login", (req, res) => {
+
+  //   db.query(`SELECT email FROM users; `)
+  //     .then(users => {
+  //       if (!getUserByEmail(req.body, users)) {
+  //         res.error("💩")
+  //         return;
+  //       }
+  //       res.redirect(`/menu`);
+  //     })
+  //     .catch(error => {
+  //       res.send(error);
+  //     });
+  // });
+
   app.post("/login", (req, res) => {
 
-    db.query(`SELECT email FROM users; `)
-      .then(users => {
-        if (!getUserByEmail(req.body, users)) {
-          res.error("💩")
-          return;
-        }
+    // db.query(`SELECT email FROM users; `)
+    //   .then(users => {
+    //     if (!getUserByEmail(req.body, users)) {
+    //       res.error("err")
+    //       return;
+    //     }
+    //     console.log("hi");
         res.redirect(`/menu`);
-      })
-      .catch(error => {
-        res.send(error);
-      });
+      // })
+      // .catch(error => {
+      //   res.send(error);
+      // });
   });
 
 
@@ -46,11 +62,15 @@ app.get("/login", (req, res) => {
 // GET user login redirect
 // redirect to login page
 // attach to update cart or place order stage?
+// app.get('/menu', (req, res) => {
+//   const currentUser = req.session.user_id;
+//   if (!currentUser) {
+//     res.redirect(`/login`);
+//   }
+// })
+
 app.get('/menu', (req, res) => {
-  const currentUser = req.session.user_id;
-  if (!currentUser) {
     res.redirect(`/login`);
-  }
 })
 
 

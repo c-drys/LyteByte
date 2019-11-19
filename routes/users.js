@@ -9,10 +9,16 @@
 module.exports = (app, db) => {
 
   app.get("/menu", (req, res) => {
-    db.query(`SELECT * FROM dishes;`)
+    db.query(`
+      SELECT dishes.id AS id, dishes.name AS name, dishes.description AS description, dishes.price AS price, categories.name AS category
+      FROM dishes
+      JOIN categories ON categories.id = category_id
+      ORDER BY id;
+    `)
       .then(data => {
         const dishes = data.rows;
-        res.json({ dishes });
+        console.log(dishes);
+        res.render(`menu`, { dishes });
       })
       .catch(err => {
         res

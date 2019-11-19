@@ -1,3 +1,6 @@
+require("./helpers/userhelper.js");
+
+
 // GET customer login
 // create and connect with nav and login styles sheet
 
@@ -23,18 +26,17 @@ app.get("/login", (req, res) => {
 
   app.post("/login", (req, res) => {
 
-    const user = getUserByEmail(req.body.email, users);
-
-  if (req.body.email !== user.email) {
-    return res.status(403).send('Sorry Invalid Credentials');
-
-  }  if (!bcrypt.compareSync(req.body.password, user.password)) {
-    return res.status(403).send('Oops...try again or request reminder.')
-
-
-  } req.session.user_id = user.id
-    res.redirect(`/menu`);
-
+    db.query(`SELECT email FROM users; `)
+      .then(users => {
+        if (!getUserByEmail(req.body, users)) {
+          res.error("💩")
+          return;
+        }
+        res.redirect(`/menu`);
+      })
+      .catch(error => {
+        res.send(error);
+      });
   });
 
 

@@ -45,6 +45,13 @@
       <div class='restaurant_order'>
         <p>Helllllllo!</p>
 
+        <% for(const order of orders) {%>
+          <%= order.id %>
+          <%= order.started_at %>
+          <%= order.created_at %>
+
+        <% }%>
+
       </div>
       <button type="submit" class="btn btn-outline-light" id="started_order">Order Started</button>
       <button type="submit" class="btn btn-outline-light" id="finished_order">Order Finished</button>

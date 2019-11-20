@@ -77,8 +77,10 @@ module.exports = (app, db) => {
     UPDATE orders
     SET status = 'started',
         started_at = NOW()
-    WHERE id = $1
+    WHERE id = $1;
     `, [req.body.orderId])
-    res.send();
+    .then((res) => {
+      res.send({ order_id: data.rows[0].id });
+    })
   })
 };

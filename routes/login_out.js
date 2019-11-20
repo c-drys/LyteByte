@@ -5,7 +5,7 @@ require("./helpers/userhelper.js");
 
 module.exports = function(app, db) {
   app.get("/login", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.query(`SELECT order.created_at FROM orders;`)
       //   if (users[req.body.user_id]) {
       //    return res.redirect(`/menu`);
       //  };

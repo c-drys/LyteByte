@@ -24,9 +24,9 @@ CREATE TABLE users (
 CREATE TABLE orders (
   id SERIAL PRIMARY KEY NOT NULL,
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  created_at TIMESTAMP NOT NULL,
-  started_at TIMESTAMP NOT NULL,
-  ended_at TIMESTAMP NOT NULL,
+  created_at TIMESTAMP,
+  started_at TIMESTAMP,
+  ended_at TIMESTAMP,
   status varchar(100) NOT NULL,
   allergies TEXT
 );

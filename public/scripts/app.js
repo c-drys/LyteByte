@@ -1,12 +1,4 @@
 $(document).ready(() => {
-  // $.ajax({
-  //   method: "GET",
-  //   url: "/api/users"
-  // }).done((users) => {
-  //   for(user of users) {
-  //     $("<div>").text(user.name).appendTo($("body"));
-  //   }
-  // });;
 
   // toggle sidebar menu
   $("#sidebarCollapse").click(function() {
@@ -92,7 +84,11 @@ $(document).ready(() => {
       data: order
     })
     .then((res) => {
-      console.log(res);
+      window.location.assign(`/order/${res.order_id}`);
+      localStorage.setItem("cart", JSON.stringify({}));
+    })
+    .catch((err) => {
+      console.log(err);
     })
   })
 

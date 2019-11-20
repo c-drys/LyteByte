@@ -7,7 +7,8 @@
 
 
 module.exports = (app, db) => {
-
+  // ================== GET ROUTES =======================
+  // LOAD THE DATABASE TO THE MENU PAGE
   app.get("/menu", (req, res) => {
 
     db.query(`
@@ -18,7 +19,6 @@ module.exports = (app, db) => {
     `)
       .then(data => {
         const dishes = data.rows;
-        console.log(dishes);
         res.render(`menu`, { dishes });
       })
       .catch(err => {
@@ -28,4 +28,45 @@ module.exports = (app, db) => {
       });
 
   });
+
+  // GET ORDER PAGE
+  app.get("/order/:id", (req, res) => {
+
+    const getOrder =
+      `SELECT orders.id as order_id, orders.status as order_status, users.name as name, users.phone as phone_number
+      FROM orders
+      JOIN users ON orders.user_id = users.id
+      WHERE users.id = $1
+      ORDER BY order_id DESC
+      LIMIT 1;`
+
+    db.query(getOrder, [req.session.user_id])
+    .then(data => {
+      console.log(data.rows);
+      res.render(`order`, data.rows);
+    })
+    .catch(err => {
+      console.log('error:', err);
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+  });
+
+  // ================== POST ROUTES =======================
+  // SUBMIT ORDER TO DATABASE
+  app.post("/order", (req, res) => {
+    db.query(`
+      INSERT INTO orders (user_id, created_at, status)
+      VALUES($1, NOW(), $2)
+      RETURNING *;
+    `,[req.session.user_id, "pending"])
+    .then((data) => {
+      console.log(data.rows);
+      res.send({ order_id: data.rows[0].id });
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  })
 };

@@ -1,12 +1,12 @@
 $(document).ready(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/api/users"
+  // }).done((users) => {
+  //   for(user of users) {
+  //     $("<div>").text(user.name).appendTo($("body"));
+  //   }
+  // });;
 
   // toggle sidebar menu
   $("#sidebarCollapse").click(function() {
@@ -78,6 +78,22 @@ $(document).ready(() => {
   $("#modalCart").on("hidden.bs.modal", function(event) {
     const modal = $(this)
     modal.find('.cartItems').empty()
+  })
+
+  // submit Button listener
+  $("#submitOrder").click(function(e) {
+    e.preventDefault();
+
+    const order = getCartItems();
+    $.ajax({
+      method: "POST",
+      url: "/order",
+      dataType: "json",
+      data: order
+    })
+    .then((res) => {
+      console.log(res);
+    })
   })
 
 });

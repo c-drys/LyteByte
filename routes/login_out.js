@@ -76,7 +76,21 @@ app.get('/order/:id', (req, res) => {
 })
 
 app.get('/restaurant_order/:id', (req, res) => {
-  res.render('restaurant_order');
+  console.log(req.params.id);
+  return db.query(`
+  SELECT * FROM orders
+  WHERE id = ${req.params.id};
+  `)
+  .then(data => {
+    const orders = data.rows;
+    console.log(orders);
+    res.render(`restaurant_order`, { orders });
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
 })
 
 app.get('/cart', (req, res) => {
@@ -133,7 +147,6 @@ app.post('/menu', (req, res) => {
   `, [req.body.order])
   .then(x => {
     const order = x.row[0]
-    console.log('hohoho');
     res.redirect(`/restaurant_order/${order.id}`);
   })
 })

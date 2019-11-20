@@ -87,10 +87,14 @@ app.get('/order/:id', (req, res) => {
    res.render('order');
 })
 
-
 app.get('/restaurant_order/:id', (req, res) => {
   res.render('restaurant_order');
 })
+
+app.get('/cart', (req, res) => {
+  res.render('cart');
+})
+
 
 app.post('/restaurant_order', (req, res) => {
   return db.query(`
@@ -106,17 +110,37 @@ app.post('/restaurant_order', (req, res) => {
 })
 
 
-app.post('/menu', (req, res) => {
+app.post('/menu', (req, res) => {1
   return db.query(`
   INSERT INTO orders VALUES($1) RETURNING *;
   `, [req.body.order])
   .then(x => {
     const order = x.row[0]
-    console.log('hohoho');
+    res.redirect(`/cart/${order.id}`);
+  })
+})
+
+app.post('/cart', (req, res) => {
+  return db.query(`
+  SELECT * FROM orders;
+  `)
+  .then(x => {
+    const order = x.row[0]
+    res.redirect(`/cart/${order.id}`);
+  })
+})
+
+app.post('/cart', (req, res) => {
+  return db.query(`
+  INSERT INTO orders VALUES($1) RETURNING *;
+  `, [req.body.order])
+  .then(x => {
+    const order = x.row[0]
     res.redirect(`/order/${order.id}`);
   })
 })
 
+<<<<<<< Updated upstream
 app.post('/menu', (req, res) => {
   return db.query(`
   INSERT INTO orders VALUES($1) RETURNING *;
@@ -127,6 +151,9 @@ app.post('/menu', (req, res) => {
     res.redirect(`/restaurant_order/${order.id}`);
   })
 })
+=======
+
+>>>>>>> Stashed changes
 
 // app.get("/order", (req, res) => {
 //   db.query(`SELECT * FROM users;`)

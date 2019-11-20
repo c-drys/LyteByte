@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fanwood+Text|Shrikhand" type="text/css" />
     <!-- material icons -->
@@ -18,7 +19,9 @@
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
 
@@ -41,8 +44,40 @@
       <!-- toggle for navigation menu -->
       <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
 
-      <h1>Menu!</h1>
-      <p>here is the invisible menu, use your imagination</p>
+      <form id="cart-container" method="POST" action=""></form>
+
+      <h1>Menu</h1>
+      <table class="table">
+        <thread>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Category</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Quantity</th>
+            <th scope="col"></th>
+          </tr>
+        </thread>
+        <tbody>
+        <% for (const dish of dishes) {%>
+          <tr>
+            <td><%= dish.id %></td>
+            <td><%= dish.category %></td>
+            <td><%= dish.name %></td>
+            <td><%= dish.description %></td>
+            <td>$<%= dish.price %></td>
+            <td><input type="number" name="quantity" value="1" min="1" max="20" step="1" /></td>
+            <td>
+              <form method="POST" action="">
+                <button type="sumbit" class="btn-primary" id="addItemToCart">Add</button>
+              </form>
+            </td>
+          </tr>
+        <% } %>
+        </tbody>
+      </table>
+
     </main>
 
   </body>

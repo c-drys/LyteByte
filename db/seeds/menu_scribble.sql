@@ -45,3 +45,7 @@ INSERT INTO dishes(name, price, description, category_id) VALUES ('Chocolate Gla
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Smoked Maple Walnut', 4.50, 'Yeast donut topped with our maple glaze and our own spiced walnuts', 6);
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Apple Fritter', 4.50, 'Chunks of fresh apple & cinnamon rolled into this yeast dough, fried to crispy perfection & topped with cinnamon glaze', 6);
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Vegan Salted Caramel', 5.05, 'A round of vegan & gluten friendly goodness with a Salty caramel glaze', 6);
+
+
+INSERT INTO orders_details (user_id, order_price, order_duration, order_id, dish_id)
+VALUES (1, 300, 180, 1, 1);

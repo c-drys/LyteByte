@@ -34,7 +34,7 @@
       <div class = "sidebar-header"><i class="material-icons">account_circle</i></div>
       <a href="/">Home</a>
       <a href="/login">account</a>
-      <a href="#">cart</a>
+      <a href="#" type="button" data-toggle="modal" data-target="#modalCart">cart</a>
       <a href="#">orders</a>
       <a href="#">reviews</a>
     </nav>
@@ -44,7 +44,45 @@
       <!-- toggle for navigation menu -->
       <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
 
-      <form id="cart-container" method="POST" action=""></form>
+      <form id="cart-container" method="POST" action="">
+        <div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <!--Header-->
+              <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <!--Body-->
+              <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Product name</th>
+                      <th scope="col">Price</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Total</th>
+                      <th scope="col">Delete</th>
+                    </tr>
+                  </thead>
+                  <!-- using jQuery Event listener to consolidate cart item -->
+                  <tbody class="cartItems"></tbody>
+                </table>
+                <div class="d-flex justify-content-end">
+                  <h5>Total: $<span class="price total text-success"></span></h5>
+                </div>
+              </div>
+              <!--Footer-->
+              <div class="modal-footer border-top-0 d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Submit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
 
       <h1>Menu</h1>
       <table class="table">
@@ -69,9 +107,16 @@
             <td>$<%= dish.price %></td>
             <td><input type="number" name="quantity" value="1" min="1" max="20" step="1" /></td>
             <td>
-              <form method="POST" action="">
-                <button type="sumbit" class="btn-primary" id="addItemToCart">Add</button>
-              </form>
+              <!-- link the data with the button -->
+              <button
+                type="sumbit"
+                class="btn-primary addItemToCart"
+                data-id="<%= dish.id %>"
+                data-name="<%= dish.name %>"
+                data-price="<%= dish.price %>"
+              >
+                Add
+              </button>
             </td>
           </tr>
         <% } %>

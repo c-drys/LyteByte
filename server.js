@@ -42,6 +42,7 @@ app.use(express.static("public"));
 // Note: Feel free to replace the example routes below with your own
 require("./routes/users")(app, db);
 require('./routes/login_out.js')(app, db);
+require("./routes/customer_order.js")(app, db);
 const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes

@@ -6,12 +6,11 @@ require("./helpers/userhelper.js");
 module.exports = function(app, db) {
   app.get("/login", (req, res) => {
     db.query(`SELECT order.created_at FROM orders;`)
-      //   if (users[req.body.user_id]) {
-      //    return res.redirect(`/menu`);
-      //  };
-      .then(data => {
-        console.log(data);
-      });
+
+    .then(data => {
+      console.log(data);
+    });
+
     let templateVars = {
       users: db.users
     };
@@ -23,28 +22,26 @@ module.exports = function(app, db) {
 
   app.post("/login", (req, res) => {
     // SET cookie
-    return db
-      .query(
-        `
-  SELECT *
-  FROM users
-  WHERE email = $1
-  `,
-        [req.body.email]
-      )
-      .then(users => {
-        console.log("00:", users.rows);
-        const user = users.rows[0];
+    return db.query(`
+      SELECT *
+      FROM users
+      WHERE email = $1
+    `,[req.body.email])
 
-        if (user) {
-          req.session.user_id = user.id;
-          res.redirect("/menu");
-        }
-      })
-      .catch(e => {
-        console.log('11', e)
-        res.status(500).send(e);
-      });
+    .then(users => {
+      console.log("00:", users.rows);
+      const user = users.rows[0];
+
+      if (user) {
+        req.session.user_id = user.id;
+        res.redirect("/menu");
+      }
+    })
+
+    .catch(e => {
+      console.log('11', e)
+      res.status(500).send(e);
+    });
   });
 
   // =====================================================

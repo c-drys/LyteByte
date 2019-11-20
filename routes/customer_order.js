@@ -38,7 +38,20 @@ module.exports = function(app, db) {
     .catch((err) => {
       console.log(err.message);
     })
+  })
+
+  app.post("/order/start", (req, res) => {
+    console.log("order started");
+    console.log(req.body);
+    db.query(`
+    UPDATE orders
+    SET status = 'started',
+        started_at = NOW()
+    WHERE id = $1
+    `, [req.body.orderId])
+    res.send();
 
   })
+
 
 };

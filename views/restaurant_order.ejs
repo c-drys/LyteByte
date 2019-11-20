@@ -39,10 +39,25 @@
     <!-- main content -->
     <main id="content">
       <!-- toggle for navigation menu -->
-      <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
+      <!-- <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span> -->
 
       <h1>Orders</h1>
-      <div class='restaurant_order'></div>
+      <div class='restaurant_order'>
+        <p>Helllllllo!</p>
+        <tr>
+          <td><%= dish.id %></td>
+          <td><%= dish.category %></td>
+          <td><%= dish.name %></td>
+          <td><%= dish.description %></td>
+          <td>$<%= dish.price %></td>
+          <td>$<%= users.name %></td>
+          <td>$<%= users.phone %></td>
+          <td>$<%= users.id %></td>
+        </tr>
+      </div>
+      <button type="submit" class="btn btn-outline-light" id="started_order">Order Started</button>
+      <button type="submit" class="btn btn-outline-light" id="finished_order">Order Finished</button>
+
     </main>
 
   </body>

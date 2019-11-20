@@ -59,11 +59,84 @@ module.exports = function(app, db) {
     }
   });
 
+
   // =====================================================
 
   // add POST logout to clear customer info
   app.post("/logout", (req, res) => {
     req.session = null;
     res.redirect(`/login`);
-  });
-};
+})
+
+
+
+//////// GETTING TO ORDER PAGE    NH 11/19   ///////////////////////////////
+app.get('/order/:id', (req, res) => {
+   res.render('order');
+})
+
+
+app.get('/restaurant_order/:id', (req, res) => {
+  res.render('restaurant_order');
+})
+
+app.post('/restaurant_order', (req, res) => {
+  return db.query(`
+  SELECT user.name, order.id
+  FROM orders
+  JOIN users ON users.id = user_id;
+  `)
+  .then(x => {
+    const order = x.row[0];
+    console.log('orders orders');
+
+  })
+})
+
+
+app.post('/menu', (req, res) => {
+  return db.query(`
+  INSERT INTO orders VALUES($1) RETURNING *;
+  `, [req.body.order])
+  .then(x => {
+    const order = x.row[0]
+    console.log('hohoho');
+    res.redirect(`/order/${order.id}`);
+  })
+})
+
+// app.get("/order", (req, res) => {
+//   db.query(`SELECT * FROM users;`)
+
+//   .then(data => {
+//     console.log(data);
+//   })
+//  let templateVars = {
+//    users: db.users }
+//  res.render(`order`, templateVars);
+// });
+
+
+
+// app.get("/restaurant_order", (req, res) => {
+//   db.query(`SELECT * FROM users;`)
+
+//   .then(data => {
+//     console.log(data);
+//   })
+//  let templateVars = {
+//    users: db.users }
+//  res.render(`restaurant_order`, templateVars);
+// });
+
+
+// =====================================================
+
+// add POST logout to clear customer info
+app.post("/logout", (req, res) => {
+  req.session = null
+  res.redirect(`/login`);
+});
+
+}
+

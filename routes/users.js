@@ -9,6 +9,7 @@
 module.exports = (app, db) => {
 
   app.get("/menu", (req, res) => {
+
     db.query(`
       SELECT dishes.id AS id, dishes.name AS name, dishes.description AS description, dishes.price AS price, categories.name AS category
       FROM dishes
@@ -25,6 +26,6 @@ module.exports = (app, db) => {
           .status(500)
           .json({ error: err.message });
       });
-  });
 
+  });
 };

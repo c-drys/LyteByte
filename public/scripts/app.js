@@ -96,5 +96,17 @@ $(document).ready(() => {
     })
   })
 
-});
+$("#started_order").click(function() {
 
+  $.ajax({
+    method: "POST",
+    url: "/order/start",
+    dataType: "json",
+    data: {orderId: 1}
+  })
+  .then((res) => {
+    console.log(res);
+  })
+})
+
+});

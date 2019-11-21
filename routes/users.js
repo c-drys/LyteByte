@@ -70,6 +70,8 @@ module.exports = (app, db) => {
     })
   })
 
+
+  // UPDATE TO DATABASE WHEN RESTAURANT UPDATE
   app.post("/order/start", (req, res) => {
     console.log("order started");
     console.log(req.body);

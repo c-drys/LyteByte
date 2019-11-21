@@ -1,6 +1,6 @@
 INSERT INTO users(name, phone, email, password, street, city, province, post_code) VALUES('Nick Hoszko', 2368864342, 'nhoszko@gmail.com', 'password', '3968 Yew St', 'Vancouver', 'British Columbia', 'V63 B3L');
-INSERT INTO users(name, phone, email, password, street, city, province, post_code) VALUES('Stella Zhou', 6122448471, 'stellaz@gmail.com', 'password', '123 Fake St', 'Vancouver', 'British Columbia', 'V63 B12');
-INSERT INTO users(name, phone, email, password, street, city, province, post_code) VALUES('Chris Drysdale', 5555555551, 'cdrysdale@gmail.com', 'password', '456 Main St', 'Vancouver', 'British Columbia', 'V3V XML');
+INSERT INTO users(name, phone, email, password, street, city, province, post_code) VALUES('Stella Zhou', 7788966363, 'stellaz@gmail.com', 'password', '123 Fake St', 'Vancouver', 'British Columbia', 'V63 B12');
+INSERT INTO users(name, phone, email, password, street, city, province, post_code) VALUES('Chris Drysdale', 6047895049, 'cdrysdale@gmail.com', 'password', '456 Main St', 'Vancouver', 'British Columbia', 'V3V XML');
 
 INSERT INTO categories(name) VALUES ('Bev');
 INSERT INTO categories( name) VALUES ('Sandwich');
@@ -16,7 +16,7 @@ INSERT INTO dishes(name, price, description, category_id) VALUES ('Cappuccino', 
 INSERT INTO dishes(name, price, description, category_id) VALUES ('San Pellegrino', 3.00, 'Natural italian mineral water', 1);
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Canada Dry Gingerale', 3.50, 'A sparkling favourite since 1904! 100% natural flavours', 1);
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Berrylicious Smoothie ', 8.00, 'Banana, blueberry, strawberry, raspberry, almond milk, lemon, maple syrup & mint', 1);
-
+INSERT INTO dishes(name, price, description, category_id) VALUES ('Citrus Moroccan Tea', 3.00, 'Sugar free warmth', 1);
 
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Bacon & Gouda Egg Sandwich', 5.50, 'Bacon, Parmesan Frittata & Aged Gouda Cheese on an Artisan Roll', 2);
 INSERT INTO dishes(name, price, description, category_id) VALUES ('Turkey & Egg White Sandwich', 5.50, 'Sizzling Turkey Bacon & Rice Creamy Melted Cheddar on an Organic English Wheat Muffin', 2);

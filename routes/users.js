@@ -73,16 +73,22 @@ module.exports = (app, db) => {
 
   // UPDATE TO DATABASE WHEN RESTAURANT UPDATE
   app.post("/order/start", (req, res) => {
-    console.log("order started");
+    // console.log("order started");
     console.log(req.body);
+    const { orderId } = req.body;
+
     db.query(`
     UPDATE orders
     SET status = 'started',
         started_at = NOW()
     WHERE id = $1;
-    `, [req.body.orderId])
-    .then((res) => {
-      res.send({ order_id: data.rows[0].id });
+    `, [orderId])
+    .then((dbRes) => {
+      console.log('dbRes, ',dbRes.rows)
+      res.send({ order_id: orderId });
+    })
+    .catch((err) => {
+      console.log(err.message);
     })
   })
 };

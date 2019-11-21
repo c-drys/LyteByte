@@ -49,12 +49,11 @@
           <%= order.id %>
           <%= order.started_at %>
           <%= order.created_at %>
-
+          <button type="submit" class="btn btn-outline-light" id="started_order" data-orderid=<%= order.id %>>Order Started</button>
+          <button type="submit" class="btn btn-outline-light" id="finished_order">Order Finished</button>
         <% }%>
 
       </div>
-      <button type="submit" class="btn btn-outline-light" id="started_order">Order Started</button>
-      <button type="submit" class="btn btn-outline-light" id="finished_order">Order Finished</button>
 
     </main>
 

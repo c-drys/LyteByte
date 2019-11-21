@@ -98,7 +98,6 @@ $(document).ready(() => {
 $(".started_order").click(function() {
   const orderId = $(this).data('orderid');
   console.log('my id!!!!', orderId);
-  startedTwilio();
   $.ajax({
     method: "POST",
     url: "/order/start",
@@ -128,15 +127,15 @@ $(".finished_order").click(function() {
   })
 })
 
-  // // console.log(window.location.pathname);
-  // if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/order`)) {
-  //   setInterval(
-  //     () => {
-  //       window.location.reload()
-  //       // console.log("interval");
-  //     }, //Callback
-  //     2000 // timeout
-  //   );
-  // }
+  // console.log(window.location.pathname);
+  if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/order`)) {
+    setInterval(
+      () => {
+        window.location.reload()
+        // console.log("interval");
+      }, //Callback
+      2000 // timeout
+    );
+  }
 
 });

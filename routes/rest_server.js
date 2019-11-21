@@ -20,7 +20,7 @@ module.exports = function(app, db) {
   // });
 
   app.get('/orders', (req, res) => {
-    console.log(req.params.id);
+    // console.log(req.params.id);
     return db.query(`
       SELECT orders.*, users.name AS name, users.phone AS phone
       FROM orders
@@ -29,7 +29,7 @@ module.exports = function(app, db) {
     `)
     .then(data => {
       const orders = data.rows;
-      console.log(orders);
+      // console.log(orders);
       res.render(`orders`, { orders }); // make a new esjs like 'orders.ejs'
     })
     .catch(err => {

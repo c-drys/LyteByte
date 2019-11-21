@@ -47,14 +47,10 @@
         <table>
         <tbody>
         <% for(const order of orders) {%>
-          <% console.log(order); %>
-
           <tr>
           <td><%= order.id %></td>
-
           <td><%= order.started_at %></td>
           <td><%= order.created_at %></td>
-
           <td>
             <button type="submit" class="btn btn-outline-light started_order" data-orderid=<%= order.id %>>Order Started</button>
           <button type="submit" class="btn btn-outline-light finished_order" data-orderid=<%= order.id %>>Order Finished

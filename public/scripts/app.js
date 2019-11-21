@@ -1,5 +1,6 @@
 $(document).ready(() => {
   // toggle sidebar menu
+
   $("#sidebarCollapse").click(function() {
     $("#sidebar").toggleClass("active");
   });
@@ -127,15 +128,13 @@ $(".finished_order").click(function() {
   })
 })
 
-  // console.log(window.location.pathname);
-  if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/order`)) {
-    setInterval(
-      () => {
-        window.location.reload()
-        // console.log("interval");
-      }, //Callback
-      2000 // timeout
-    );
-  }
+// if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/orders`)) {
+//   setInterval(
+//     () => {
+//       window.location.reload()
+//     },
+//     2000
+//   );
+// }
 
 });

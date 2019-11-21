@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fanwood+Text|Shrikhand" type="text/css" />
     <!-- material icons -->
@@ -20,12 +19,10 @@
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
 
-    <title>LyteByte Login In Page</title>
+    <title>LyteByte Home Page</title>
   </head>
 
   <body>
@@ -34,6 +31,9 @@
       <div class = "sidebar-header"><i class="material-icons">account_circle</i></div>
       <a href="/">Home</a>
       <a href="/login">account</a>
+      <a href="#">cart</a>
+      <a href="/order">orders</a>
+      <a href="">reviews</a>
     </nav>
 
     <!-- main content -->
@@ -41,21 +41,20 @@
       <!-- toggle for navigation menu -->
       <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
 
-      <h1>Login In</h1>
-      <form method="POST" action="/login">
-        <!-- email address -->
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" name="email" class="form-control" placeholder="Enter email" style="width: 300px">
-        </div>
-        <!-- password field  -->
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" placeholder="Password" style="width: 300px">
-        </div>
-        <!-- call to action button -->
-        <button type="submit" class="btn btn-outline-light">Login</button>
-      </form>
+      <h1>Your order</h1>
+      <div class='order'></div>
+
+            <%= orders[0].order_id %>
+            <%= orders[0].order_status %>
+            <%= orders[0].order_started_at %>
+            <%= orders[0].order_ended_at %>
+            <%= orders[0].name %>
+            <%= orders[0].phone_number%>
+
+
+       </div>
+
+
     </main>
 
   </body>

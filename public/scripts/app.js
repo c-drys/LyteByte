@@ -84,14 +84,49 @@ $(document).ready(() => {
       dataType: "json",
       data: order
     })
-      .then(res => {
-        window.location.assign(`/order/${res.order_id}`);
-        localStorage.setItem("cart", JSON.stringify({}));
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  });
+
+    .then((res) => {
+      window.location.assign(`/order/${res.order_id}`);
+      localStorage.setItem("cart", JSON.stringify({}));
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+  })
+
+// Order Start Button TO UPDATE THE ORDER STATUS
+$(".started_order").click(function() {
+  const orderId = $(this).data('orderid');
+  console.log('my id!!!!', orderId);
+  startedTwilio();
+  $.ajax({
+    method: "POST",
+    url: "/order/start",
+    dataType: "json",
+    data: { orderId }
+  })
+  .then((res) => {
+    console.log(res);
+    // refresh here with latest res from database
+    setTimeout('window.location.reload();', 10)
+  })
+})
+
+$(".finished_order").click(function() {
+  const orderId = $(this).data('orderid');
+  console.log(orderId);
+  $.ajax({
+    method: "POST",
+    url: "/order/finish",
+    dataType: "json",
+    data: { orderId }
+  })
+  .then((res) => {
+    console.log(res);
+    // refresh here with latest res from database
+    setTimeout('window.location.reload();', 10)
+  })
+})
 
   // // console.log(window.location.pathname);
   // if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/order`)) {
@@ -104,18 +139,4 @@ $(document).ready(() => {
   //   );
   // }
 
-  // Order Start Button TO UPDATE THE ORDER STATUS
-  $("#started_order").click(function() {
-    const orderId = $(this).data("orderid");
-    console.log("my id!!!!", orderId);
-    $.ajax({
-      method: "POST",
-      url: "/order/start",
-      dataType: "json",
-      data: { orderId }
-    }).then(res => {
-      console.log(res);
-      // refresh here with latest res from database
-    });
-  });
 });

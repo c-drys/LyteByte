@@ -33,7 +33,7 @@ module.exports = (app, db) => {
   app.get("/order/:id", (req, res) => {
 
     const getOrder =
-      `SELECT orders.id as order_id, orders.status as order_status, orders.started_at as started_at, orders.ended_at as ended_at users.name as name, users.phone as phone_number
+      `SELECT orders.id as order_id, orders.status as order_status, orders.started_at as started_at, orders.ended_at as ended_at, users.name as name, users.phone as phone_number
       FROM orders
       JOIN users ON orders.user_id = users.id
       WHERE users.id = $1

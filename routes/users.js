@@ -33,7 +33,7 @@ module.exports = (app, db) => {
   app.get("/order/:id", (req, res) => {
 
     const getOrder =
-      `SELECT orders.id as order_id, orders.status as order_status, users.name as name, users.phone as phone_number
+      `SELECT orders.id as order_id, orders.status as order_status, orders.started_at as started_at, orders.ended_at as ended_at users.name as name, users.phone as phone_number
       FROM orders
       JOIN users ON orders.user_id = users.id
       WHERE users.id = $1
@@ -41,9 +41,12 @@ module.exports = (app, db) => {
       LIMIT 1;`
 
     db.query(getOrder, [req.session.user_id])
+
     .then(data => {
-      console.log(data.rows);
-      res.render(`order`, data.rows);
+      const orders = data.rows;
+      // console.log(data.rows);
+      console.log("hellos", orders)
+      res.render(`order`, { orders });
     })
     .catch(err => {
       console.log('error:', err);

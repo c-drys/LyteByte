@@ -49,7 +49,12 @@ module.exports = function(app, db) {
         started_at = NOW()
     WHERE id = $1
     `, [req.body.orderId])
-    res.send();
+    .then(() => {
+      res.send(`order`);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
 
   })
 

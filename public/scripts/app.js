@@ -94,12 +94,13 @@ $(document).ready(() => {
 
 // Order Start Button TO UPDATE THE ORDER STATUS
 $("#started_order").click(function() {
-
+  const orderId = $(this).data('orderid');
+  console.log('my id!!!!', orderId);
   $.ajax({
     method: "POST",
     url: "/order/start",
     dataType: "json",
-    data: {orderId: 1}
+    data: { orderId }
   })
   .then((res) => {
     console.log(res);

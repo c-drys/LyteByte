@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css" />
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/order.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -32,7 +33,7 @@
       <a href="/">Home</a>
       <a href="/login">account</a>
       <a href="#">cart</a>
-      <a href="/order">orders</a>
+      <a href="/order/">orders</a>
       <a href="">reviews</a>
     </nav>
 
@@ -41,8 +42,9 @@
       <!-- toggle for navigation menu -->
       <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
 
-      <h1>Your order</h1>
-      <div class='order'></div>
+      <h1>Your Order</h1>
+
+      <div class='order-container'>
 
             <%= orders[0].order_id %>
             <%= orders[0].order_status %>

@@ -44,15 +44,24 @@
       <h1>Orders</h1>
       <div class='restaurant_order'>
         <p>Helllllllo!</p>
-
+        <table>
+        <tbody>
         <% for(const order of orders) {%>
-          <%= order.id %>
-          <%= order.started_at %>
-          <%= order.created_at %>
-          <button type="submit" class="btn btn-outline-light" id="started_order" data-orderid=<%= order.id %>>Order Started</button>
-          <button type="submit" class="btn btn-outline-light" id="finished_order">Order Finished</button>
-        <% }%>
+          <tr>
+          <td><%= order.id %></td>
+          <td><%= order.started_at %></td>
+          <td><%= order.created_at %></td>
 
+          <td>
+            <button type="submit" class="btn btn-outline-light" id="started_order" data-orderid=<%= order.id %>>Order Started</button>
+          <button type="submit" class="btn btn-outline-light" id="finished_order">Order Finished
+
+          </button>
+        </td>
+        </tr>
+        <% }%>
+      </tbody>
+    </table>
       </div>
 
     </main>

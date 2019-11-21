@@ -3,7 +3,7 @@ const authToken = process.env.TWILIO_TOKEN;
 
 const client = require('twilio')(accountSid, authToken);
 
-const started = function() {
+const startedTwilio = function() {
 client.messages.create({
   to: '+12368864342',
   from: '+12563776706',
@@ -12,7 +12,7 @@ client.messages.create({
 .then((message) => console.log(message.sid));
 }
 
-const ready = function () {
+const readyTwilio = function () {
 client.messages.create({
   to: '+12368864342',
   from: '+12563776706',
@@ -20,3 +20,5 @@ client.messages.create({
 })
 .then((message) => console.log(message.sid));
 }
+
+module.exports(startedTwilio, readyTwilio)

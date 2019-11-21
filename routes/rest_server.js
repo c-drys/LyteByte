@@ -17,6 +17,23 @@ module.exports = function(app, db) {
         .status(500)
         .json({ error: err.message });
     });
+  });
+
+  app.get('/orders', (req, res) => {
+    console.log(req.params.id);
+    return db.query(`
+      SELECT * FROM orders
+    `)
+    .then(data => {
+      const orders = data.rows;
+      console.log(orders);
+      res.render(`orders`, { orders }); // make a new esjs like 'orders.ejs'
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
   })
 
 }

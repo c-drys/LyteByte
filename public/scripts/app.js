@@ -92,6 +92,7 @@ $(document).ready(() => {
     })
   })
 
+// Order Start Button TO UPDATE THE ORDER STATUS
 $("#started_order").click(function() {
 
   $.ajax({

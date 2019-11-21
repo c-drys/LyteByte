@@ -104,6 +104,7 @@ $("#started_order").click(function() {
   .then((res) => {
     console.log(res);
     // refresh here with latest res from database
+    setTimeout('window.location.reload();', 10)
   })
 })
 

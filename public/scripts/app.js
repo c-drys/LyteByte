@@ -93,12 +93,29 @@ $(document).ready(() => {
   })
 
 // Order Start Button TO UPDATE THE ORDER STATUS
-$("#started_order").click(function() {
+$(".started_order").click(function() {
   const orderId = $(this).data('orderid');
   console.log('my id!!!!', orderId);
+  startedTwilio();
   $.ajax({
     method: "POST",
     url: "/order/start",
+    dataType: "json",
+    data: { orderId }
+  })
+  .then((res) => {
+    console.log(res);
+    // refresh here with latest res from database
+    setTimeout('window.location.reload();', 10)
+  })
+})
+
+$(".finished_order").click(function() {
+  const orderId = $(this).data('orderid');
+  console.log(orderId);
+  $.ajax({
+    method: "POST",
+    url: "/order/finish",
     dataType: "json",
     data: { orderId }
   })

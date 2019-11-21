@@ -48,15 +48,32 @@ module.exports = function(app, db) {
     SET status = 'started',
         started_at = NOW()
     WHERE id = $1
-    `, [req.body.orderId])
+    `, [req.body])
     .then(() => {
-      res.send(`order`);
+      res.send(`orders`);
     })
     .catch((err) => {
       console.log(err.message);
     })
-
   })
+
+  app.post("/order", (req, res) => {
+    console.log("order finished");
+    console.log(req.body);
+    db.query(`
+    UPDATE orders
+    SET status = 'ready4pickup',
+        ended_at = NOW()
+    WHERE id = $1
+    `, [req.body])
+    .then(() => {
+      res.send(`orders`);
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  })
+
 
 
 };

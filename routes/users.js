@@ -77,7 +77,7 @@ module.exports = (app, db) => {
   // UPDATE TO DATABASE WHEN RESTAURANT UPDATE
   app.post("/order/start", (req, res) => {
     // console.log("order started");
-    console.log(req.body);
+    console.log('users 80', req.body);
     const { orderId } = req.body;
 
     db.query(`
@@ -94,4 +94,25 @@ module.exports = (app, db) => {
       console.log(err.message);
     })
   })
+
+  app.post("/order/finish", (req, res) => {
+    // console.log("order finished");
+    console.log('users 100', req.body);
+    const { orderId } = req.body;
+
+    db.query(`
+    UPDATE orders
+    SET status = 'ready4pickup',
+        ended_at = NOW()
+    WHERE id = $1;
+    `, [orderId])
+    .then((dbRes) => {
+      console.log('dbRes, ',dbRes.rows)
+      res.send({ order_id: orderId });
+    })
+    .catch((err) => {
+      console.log(err.message);
+    })
+  })
+
 };

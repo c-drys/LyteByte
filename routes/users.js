@@ -7,6 +7,7 @@
 
 
 module.exports = (app, db) => {
+  const twilio = require('./helpers/twilio')
   // ================== GET ROUTES =======================
   // LOAD THE DATABASE TO THE MENU PAGE
   app.get("/menu", (req, res) => {
@@ -77,8 +78,9 @@ module.exports = (app, db) => {
   // UPDATE TO DATABASE WHEN RESTAURANT UPDATE
   app.post("/order/start", (req, res) => {
     // console.log("order started");
-    console.log('users 80', req.body);
+    // console.log('users 80', req.body);
     const { orderId } = req.body;
+    // const userPhone = `SELECT phone FROM users;`
 
     db.query(`
     UPDATE orders
@@ -90,6 +92,9 @@ module.exports = (app, db) => {
       console.log('dbRes, ',dbRes.rows)
       res.send({ order_id: orderId });
     })
+    .then(() => {
+      return twilio.startedTwilio(users.phone);
+    })
     .catch((err) => {
       console.log(err.message);
     })
@@ -97,7 +102,7 @@ module.exports = (app, db) => {
 
   app.post("/order/finish", (req, res) => {
     // console.log("order finished");
-    console.log('users 100', req.body);
+    // console.log('users 100', req.body);
     const { orderId } = req.body;
 
     db.query(`
@@ -109,6 +114,9 @@ module.exports = (app, db) => {
     .then((dbRes) => {
       console.log('dbRes, ',dbRes.rows)
       res.send({ order_id: orderId });
+    })
+    .then(() => {
+      return twilio.readyTwilio();
     })
     .catch((err) => {
       console.log(err.message);

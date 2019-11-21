@@ -1,6 +1,6 @@
 $(document).ready(() => {
-
   // toggle sidebar menu
+
   $("#sidebarCollapse").click(function() {
     $("#sidebar").toggleClass("active");
   });
@@ -96,7 +96,6 @@ $(document).ready(() => {
 $(".started_order").click(function() {
   const orderId = $(this).data('orderid');
   console.log('my id!!!!', orderId);
-  startedTwilio();
   $.ajax({
     method: "POST",
     url: "/order/start",
@@ -126,4 +125,12 @@ $(".finished_order").click(function() {
   })
 })
 
+// if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/orders`)) {
+//   setInterval(
+//     () => {
+//       window.location.reload()
+//     },
+//     2000
+//   );
+// }
 });

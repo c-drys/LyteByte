@@ -77,10 +77,7 @@ module.exports = (app, db) => {
 
   // UPDATE TO DATABASE WHEN RESTAURANT UPDATE
   app.post("/order/start", (req, res) => {
-    // console.log("order started");
-    // console.log('users 80', req.body);
     const { orderId } = req.body;
-    // const userPhone = `SELECT phone FROM users;`
 
     db.query(`
     UPDATE orders
@@ -91,9 +88,15 @@ module.exports = (app, db) => {
     .then((dbRes) => {
       console.log('dbRes, ',dbRes.rows)
       res.send({ order_id: orderId });
+      return db.query(`
+      SELECT users.phone FROM users
+      JOIN orders ON users.id = orders.user_id
+      WHERE orders.id = $1;
+    `, [orderId]);
     })
-    .then(() => {
-      return twilio.startedTwilio(users.phone);
+    .then((phone_numbers_res) => {
+      const first_phone_number = phone_numbers_res.rows[0].phone
+      return twilio.startedTwilio(first_phone_number);
     })
     .catch((err) => {
       console.log(err.message);
@@ -101,22 +104,32 @@ module.exports = (app, db) => {
   })
 
   app.post("/order/finish", (req, res) => {
-    // console.log("order finished");
-    // console.log('users 100', req.body);
     const { orderId } = req.body;
 
     db.query(`
-    UPDATE orders
-    SET status = 'ready4pickup',
-        ended_at = NOW()
-    WHERE id = $1;
+      UPDATE orders
+      SET status = 'ready4pickup',
+          ended_at = NOW()
+      WHERE id = $1;
     `, [orderId])
     .then((dbRes) => {
-      console.log('dbRes, ',dbRes.rows)
+      console.log('dbRes, ',dbRes.rows[0])
       res.send({ order_id: orderId });
+      return db.query(`
+        SELECT users.phone FROM users
+        JOIN orders ON users.id = orders.user_id
+        WHERE orders.id = $1;
+      `, [orderId]);
     })
-    .then(() => {
-      return twilio.readyTwilio();
+    .then((phone_numbers_res) => {
+      // console.log('phone_numbers_res', phone_numbers_res);
+      console.log('phone_numbers_res.rows', phone_numbers_res.rows);
+      // console.log('phone_numbers_res.rows[0]', phone_numbers_res.rows[0]);
+      // console.log('phone_numbers_res.rows[0].phone', phone_numbers_res.rows[0].phone);
+      const first_phone_number = phone_numbers_res.rows[0].phone
+      console.log('order Id', orderId)
+      // db.query(`SELECT phone FROM users WHERE orders.user_id;`)
+      return twilio.readyTwilio(first_phone_number);
     })
     .catch((err) => {
       console.log(err.message);

@@ -1,23 +1,5 @@
 module.exports = function(app, db) {
-
-  // GET THE DATABASE FOR RESTAURANT PAGE
-  // app.get('/restaurant_order/:id', (req, res) => {
-  //   console.log(req.params.id);
-  //   return db.query(`
-  //     SELECT * FROM orders
-  //     WHERE id = ${req.params.id};
-  //   `)
-  //   .then(data => {
-  //     const orders = data.rows;
-  //     console.log(orders);
-  //     res.render(`restaurant_order`, { orders });
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  // });
+  const moment = require('moment');
 
   app.get('/orders', (req, res) => {
     // console.log(req.params.id);
@@ -29,8 +11,12 @@ module.exports = function(app, db) {
     `)
     .then(data => {
       const orders = data.rows;
-      // console.log(orders);
-      res.render(`orders`, { orders }); // make a new esjs like 'orders.ejs'
+      const displayOrders = orders.map(order => ({
+        ...order,
+        ended_at: order.ended_at ? moment(order.ended_at).startOf('minute').fromNow() : 'PENDING',
+        started_at: order.started_at ? moment(order.started_at).startOf('minute').fromNow() : 'PENDING'
+      }));
+      res.render(`orders`, { orders: displayOrders }); // make a new esjs like 'orders.ejs'
     })
     .catch(err => {
       res

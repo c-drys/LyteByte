@@ -1,17 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito|Open+Sans&display=swap');
+$nunito: 'Nunito', sans-serif;
+$sans: 'Open Sans', sans-serif;
+
 .order-container{
-  position:relative;
   z-index:1000;
-  background:#ecc65c;
+  background-color: #ffffff;
   padding:2em 2em 2em 2em;
-  margin-top:10em;
-  border-radius: 25px;
+  margin-top:2em;
+  border-radius: 7px;
   box-shadow:-2px 2px 2px #333333;
-  height:20rem;
+  height:32rem;
   width:20rem;
+  color: black;
 
+  .orderInfo {
+    border-bottom: darkslategray dashed 1px;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
 
-  form{
-    margin-top:1em;
+    h3 {
+      font-family: $nunito;
+      font-size: 25px;
+      font-weight: bold;
+      width: 70%;
+    }
+    h4 {
+      width: 30%;
+    }
+  }
+  .owlGif {
+    width: 100%;
+    text-align: left;
+  }
+  .userInfo {
+    text-align: center;
+    padding: 2em;
+    font-family: $sans;
+    letter-spacing: 5px;
   }
 
 }

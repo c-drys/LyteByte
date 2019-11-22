@@ -128,7 +128,7 @@ $(".finished_order").click(function() {
   })
 })
 
-if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/orders`)) {
+if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/order`)) {
   setInterval(
     () => {
       window.location.reload()

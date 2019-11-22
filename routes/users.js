@@ -8,7 +8,7 @@
 
 module.exports = (app, db) => {
   const twilio = require('./helpers/twilio')
-  const moment = require('moment');
+
   // ================== GET ROUTES =======================
   // LOAD THE DATABASE TO THE MENU PAGE
   app.get("/menu", (req, res) => {
@@ -28,7 +28,6 @@ module.exports = (app, db) => {
           .status(500)
           .json({ error: err.message });
       });
-
   });
 
   // GET ORDER PAGE
@@ -65,7 +64,7 @@ module.exports = (app, db) => {
       INSERT INTO orders (user_id, created_at, status)
       VALUES($1, NOW(), $2)
       RETURNING *;
-    `,[req.session.user_id, "pending"])
+    `,[req.session.user_id, "PENDING"])
     .then((data) => {
       console.log(data.rows);
       res.send({ order_id: data.rows[0].id });
@@ -82,7 +81,7 @@ module.exports = (app, db) => {
 
     db.query(`
     UPDATE orders
-    SET status = 'started',
+    SET status = 'STARTED',
         started_at = NOW()
     WHERE id = $1;
     `, [orderId])
@@ -109,7 +108,7 @@ module.exports = (app, db) => {
 
     db.query(`
       UPDATE orders
-      SET status = 'ready4pickup',
+      SET status = 'READY',
           ended_at = NOW()
       WHERE id = $1;
     `, [orderId])
@@ -132,5 +131,4 @@ module.exports = (app, db) => {
       console.log(err.message);
     })
   })
-
 };

@@ -49,32 +49,28 @@
         <table>
           <thead>
             <tr>
-                <th>Order No.</th>
-                <th>Name</th>
-                <th>Started At</th>
-                <th>Finished At</th>
+              <th>Order No.</th>
+              <th>Name</th>
+              <th>Started At</th>
+              <th>Finished At</th>
             </tr>
           </thead>
           <% for(const order of orders) {%>
           <tbody>
           <tr>
-
-          <td><%= order.id %></td>
-          <td><%= order.name %></td>
-          <td><%= order.started_at %></td>
-          <td><%= order.ended_at %></td>
-          <td>
-            <button type="submit" class="btn btn-outline-light started_order" data-orderid=<%= order.id %>>Order Started</button>
-          <button type="submit" class="btn btn-outline-light finished_order" data-orderid=<%= order.id %>>Order Finished
-
-          </button></td>
-        </tr>
+            <td><%= order.id %></td>
+            <td><%= order.name %></td>
+            <td><%= order.started_at %></td>
+            <td><%= order.ended_at %></td>
+            <td>
+              <button type="submit" class="btn btn-outline-light started_order" data-orderid=<%= order.id %>>Order Started</button>
+              <button type="submit" class="btn btn-outline-light finished_order" data-orderid=<%= order.id %>>Order Finished</button>
+            </td>
+          </tr>
         <% }%>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
       </div>
-
     </main>
-
   </body>
 </html>

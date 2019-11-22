@@ -24,5 +24,4 @@ module.exports = function(app, db) {
         .json({ error: err.message });
     });
   })
-
 }

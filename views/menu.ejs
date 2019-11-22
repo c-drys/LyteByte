@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css" />
     <!-- App CSS -->
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/menu.css" type="text/css" />
 
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -40,7 +41,7 @@
     </nav>
 
     <!-- main content -->
-    <main id="content">
+    <main id="menu-content">
       <!-- toggle for navigation menu -->
       <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
 
@@ -84,44 +85,35 @@
         </div>
       </form>
 
-      <h1>Menu</h1>
-      <table class="table">
-        <thread>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Category</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col"></th>
-          </tr>
-        </thread>
-        <tbody>
+      <h1 id="menu-title">Menu</h1>
+
+      <div class = "menu-grid">
         <% for (const dish of dishes) {%>
-          <tr>
-            <td><%= dish.id %></td>
-            <td><%= dish.category %></td>
-            <td><%= dish.name %></td>
-            <td><%= dish.description %></td>
-            <td>$<%= dish.price %></td>
-            <td><input type="number" name="quantity" value="1" min="1" max="20" step="1" /></td>
-            <td>
-              <!-- link the data with the button -->
-              <button
-                type="sumbit"
-                class="btn-primary addItemToCart"
-                data-id="<%= dish.id %>"
-                data-name="<%= dish.name %>"
-                data-price="<%= dish.price %>"
-              >
-                Add
-              </button>
-            </td>
-          </tr>
+
+        <div class = "dish-child">
+          <div id="dish-name"><%= dish.name %>(<%= dish.category %>)</div>
+          <div id="dish-description"><%= dish.description %></div>
+          <div id="dish-quantity">
+            <div class="def-number-input number-input safari_only">
+              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+              <input type="number" name="quantity" value="1" min="1" max="20" step="1" class="quantity"/>
+              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+            </div>
+          </div>
+          <div id="dish-price">$<%= dish.price %>.00</div>
+          <button
+            type="sumbit"
+            class="addItemToCart"
+            data-id="<%= dish.id %>"
+            data-name="<%= dish.name %>"
+            data-price="<%= dish.price %>"
+            id="dish-submit"
+          >
+            <img src="http://localhost:8080/videos/cart.png">
+          </button>
+        </div>
         <% } %>
-        </tbody>
-      </table>
+      </div>
 
     </main>
 

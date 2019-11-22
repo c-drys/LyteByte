@@ -22,10 +22,10 @@ Twilio is used to implement SMS communication from the website to the user clien
 ## Final Product
 
 ## LyteByte HomePage & Login 
-!["login - desk](https://github.com/drystar/tweeter/blob/master/docs/char-count-800.png?raw=true)
+!["login - desk](https://github.com/drystar/LyteByte/blob/master/docs/login-desk.png?raw=true)
 
 # user order placed & status
-!["user order - mob](https://github.com/drystar/tweeter/blob/master/docs/char-count-800.png?raw=true)
+!["user order - mob](https://github.com/drystar/LyteByte/blob/master/docs/order-status-mob.png?raw=true)
 
 
 Future Stretch Activites the Group Considered

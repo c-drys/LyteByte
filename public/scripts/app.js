@@ -32,9 +32,7 @@ $(document).ready(() => {
   // add button listener event
   $(".addItemToCart").click(function(e) {
     const $addToCartBtn = $(e.target);
-
     const dish = $addToCartBtn.data();
-
     const quantity = $addToCartBtn
       .closest("tr")
       .find('input[name="quantity"]')
@@ -48,7 +46,6 @@ $(document).ready(() => {
       price: dish.price,
       quantity: quantity
     };
-
     localStorage.setItem("cart", JSON.stringify(cart));
   });
 
@@ -61,10 +58,8 @@ $(document).ready(() => {
       const item = cart[itemID];
       item.total = item.quantity * item.price;
       grandTotal += item.total;
-
       $(".cartItems").prepend(cartItem(item));
     }
-
     $(".price.total").html(grandTotal);
   });
 
@@ -85,7 +80,6 @@ $(document).ready(() => {
       dataType: "json",
       data: order
     })
-
     .then((res) => {
       window.location.assign(`/order/${res.order_id}`);
       localStorage.setItem("cart", JSON.stringify({}));
@@ -98,7 +92,7 @@ $(document).ready(() => {
 // Order Start Button TO UPDATE THE ORDER STATUS
 $(".started_order").click(function() {
   const orderId = $(this).data('orderid');
-  console.log('my id!!!!', orderId);
+  // console.log('my id!!!!', orderId);
   $.ajax({
     method: "POST",
     url: "/order/start",

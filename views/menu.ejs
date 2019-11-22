@@ -89,28 +89,24 @@
 
       <div class = "menu-grid">
         <% for (const dish of dishes) {%>
-
         <div class = "dish-child">
           <div id="dish-name"><%= dish.name %>(<%= dish.category %>)</div>
           <div id="dish-description"><%= dish.description %></div>
           <div id="dish-quantity">
-            <div class="def-number-input number-input safari_only">
-              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-              <input type="number" name="quantity" value="1" min="1" max="20" step="1" class="quantity"/>
-              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-            </div>
+            <input type="number" name="quantity" value="1" min="1" max="20" step="1" />
           </div>
-          <div id="dish-price">$<%= dish.price %>.00</div>
-          <button
-            type="sumbit"
-            class="addItemToCart"
-            data-id="<%= dish.id %>"
-            data-name="<%= dish.name %>"
-            data-price="<%= dish.price %>"
-            id="dish-submit"
-          >
-            <img src="http://localhost:8080/videos/cart.png">
-          </button>
+          <div id="dish-price">$ <%= dish.price %>.00</div>
+          <div id="dish-submit>
+            <button
+              type="sumbit"
+              class="btn btn-info addItemToCart"
+              data-id="<%= dish.id %>"
+              data-name="<%= dish.name %>"
+              data-price="<%= dish.price %>"
+            >
+              ADD
+            </button>
+          </div>
         </div>
         <% } %>
       </div>

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
     <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/orders.css" type="text/css" />
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Fanwood+Text|Shrikhand" type="text/css" />
     <!-- material icons -->
@@ -19,9 +20,9 @@
     <!-- External JS -->
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js" integrity="sha256-H9jAz//QLkDOy/nzE9G4aYijQtkLt9FvGmdUTwBk6gs=" crossorigin="anonymous"></script>
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/app.js"></script>
-
     <title>LyteByte Home Page</title>
   </head>
 
@@ -41,22 +42,32 @@
       <!-- toggle for navigation menu -->
       <!-- <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span> -->
 
-      <h1>Orders</h1>
+      <h1 id='orders-title'>Orders</h1>
       <div class='restaurant_order'>
-        <p>Helllllllo!</p>
+        <!-- <p></p> -->
+        <!-- <p><%= JSON.stringify(orders[0]) %></p> -->
         <table>
-        <tbody>
-        <% for(const order of orders) {%>
+          <thead>
+            <tr>
+                <th>Order No.</th>
+                <th>Name</th>
+                <th>Started At</th>
+                <th>Finished At</th>
+            </tr>
+          </thead>
+          <% for(const order of orders) {%>
+          <tbody>
           <tr>
+
           <td><%= order.id %></td>
+          <td><%= order.name %></td>
           <td><%= order.started_at %></td>
-          <td><%= order.created_at %></td>
+          <td><%= order.ended_at %></td>
           <td>
             <button type="submit" class="btn btn-outline-light started_order" data-orderid=<%= order.id %>>Order Started</button>
           <button type="submit" class="btn btn-outline-light finished_order" data-orderid=<%= order.id %>>Order Finished
 
-          </button>
-        </td>
+          </button></td>
         </tr>
         <% }%>
       </tbody>

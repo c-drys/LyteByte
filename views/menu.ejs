@@ -51,7 +51,7 @@
             <div class="modal-content">
               <!--Header-->
               <div class="modal-header border-bottom-0">
-                <h5 class="modal-title" id="exampleModalLabel">Shopping Cart</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Ordering List</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
@@ -61,7 +61,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th scope="col">Product name</th>
+                      <th scope="col">Product</th>
                       <th scope="col">Price</th>
                       <th scope="col">Qty</th>
                       <th scope="col">Total</th>
@@ -71,32 +71,44 @@
                   <!-- using jQuery Event listener to consolidate cart item -->
                   <tbody class="cartItems"></tbody>
                 </table>
-                <div class="d-flex justify-content-end">
-                  <h5>Total: $<span class="price total text-success"></span></h5>
-                </div>
+
               </div>
               <!--Footer-->
               <div class="modal-footer border-top-0 d-flex justify-content-between">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-success" id="submitOrder">Submit</button>
+                <div class="d-flex justify-content-end">
+                  <h5>Total: $<span class="price total text-success"></span></h5>
+                </div>
+                <button type="button" class="btn btn-success btn-lg" id="submitOrder">Submit</button>
               </div>
             </div>
           </div>
         </div>
       </form>
 
+      <p class="popout">
+        <span>F</span>
+        <span>R</span>
+        <span>E</span>
+        <span>S</span>
+        <span>H</span>
+        <span>M</span>
+        <span>A</span>
+        <span>D</span>
+        <span>E</span>
+      </p>
+
       <h1 id="menu-title">Menu</h1>
 
-      <div class = "menu-grid">
+      <div class = "dish-content">
         <% for (const dish of dishes) {%>
         <div class = "dish-child">
-          <div id="dish-name"><%= dish.name %>(<%= dish.category %>)</div>
+          <div id="dish-name"><%= dish.name %></div>
           <div id="dish-description"><%= dish.description %></div>
           <div id="dish-quantity">
-            <input type="number" name="quantity" value="1" min="1" max="20" step="1" />
+            QTY: <input type="number" name="quantity" value="1" min="1" max="20" step="1" class="form-control" />
           </div>
           <div id="dish-price">$ <%= dish.price %>.00</div>
-          <div id="dish-submit>
+          <div id="dish-submit">
             <button
               type="sumbit"
               class="btn btn-info addItemToCart"

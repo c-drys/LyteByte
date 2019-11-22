@@ -1,5 +1,5 @@
-                                                                                                                        # mid-terms
-                                                                                                          LHL: W6: a food pickup app 
+                                                                                     # mid-terms
+                                                                                     LHL: W6: a food pickup app 
 =========
 
 ## LyteByte

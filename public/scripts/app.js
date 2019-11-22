@@ -34,7 +34,7 @@ $(document).ready(() => {
     const $addToCartBtn = $(e.target);
     const dish = $addToCartBtn.data();
     const quantity = $addToCartBtn
-      .closest("tr")
+      .closest(".dish-child")
       .find('input[name="quantity"]')
       .val();
 

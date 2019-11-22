@@ -31,7 +31,7 @@ Twilio is used to implement SMS communication from the website to the user clien
 Future Stretch Activites the Group Considered
 =========
 
-- User Registratiobn 
+- User Registration
 - Payment Processing 
 - Users Feedback & Reviews
 

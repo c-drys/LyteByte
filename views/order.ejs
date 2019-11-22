@@ -45,7 +45,9 @@
       <div class='order-container'>
         <div class="orderInfo">
           <h3>Order #<%= orders[0].order_id %></h3>
-          <h4><%= orders[0].order_status %></h4>
+          <div class="popout">
+            <span><h4><%= orders[0].order_status %></h4></span>
+          </div>
         </div>
         <img src="http://localhost:8080/videos/owl.gif" class="owlGif">
         <div class="userInfo">

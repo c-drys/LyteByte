@@ -122,12 +122,13 @@ $(".finished_order").click(function() {
   })
 })
 
-// if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/orders`)) {
-//   setInterval(
-//     () => {
-//       window.location.reload()
-//     },
-//     2000
-//   );
-// }
+if (window.location.pathname === `/orders/` || window.location.pathname.startsWith(`/order`)) {
+  setInterval(
+    () => {
+      window.location.reload()
+    },
+    2000
+  );
+}
+
 });

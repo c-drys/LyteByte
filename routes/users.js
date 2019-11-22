@@ -8,6 +8,7 @@
 
 module.exports = (app, db) => {
   const twilio = require('./helpers/twilio')
+  const moment = require('moment');
   // ================== GET ROUTES =======================
   // LOAD THE DATABASE TO THE MENU PAGE
   app.get("/menu", (req, res) => {
@@ -122,13 +123,9 @@ module.exports = (app, db) => {
       `, [orderId]);
     })
     .then((phone_numbers_res) => {
-      // console.log('phone_numbers_res', phone_numbers_res);
       console.log('phone_numbers_res.rows', phone_numbers_res.rows);
-      // console.log('phone_numbers_res.rows[0]', phone_numbers_res.rows[0]);
-      // console.log('phone_numbers_res.rows[0].phone', phone_numbers_res.rows[0].phone);
       const first_phone_number = phone_numbers_res.rows[0].phone
       console.log('order Id', orderId)
-      // db.query(`SELECT phone FROM users WHERE orders.user_id;`)
       return twilio.readyTwilio(first_phone_number);
     })
     .catch((err) => {

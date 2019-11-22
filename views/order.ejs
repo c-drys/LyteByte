@@ -42,18 +42,16 @@
       <!-- toggle for navigation menu -->
       <span type="button" id="sidebarCollapse"><i class="material-icons">dehaze</i></span>
 
-      <h1>Your Order</h1>
-
       <div class='order-container'>
-
-            <%= orders[0].order_id %>
-            <%= orders[0].order_status %>
-            <%= orders[0].order_started_at %>
-            <%= orders[0].order_ended_at %>
-            <%= orders[0].name %>
-            <%= orders[0].phone_number%>
-
-
+        <div class="orderInfo">
+          <h3>Order #<%= orders[0].order_id %></h3>
+          <h4><%= orders[0].order_status %></h4>
+        </div>
+        <img src="http://localhost:8080/videos/owl.gif" class="owlGif">
+        <div class="userInfo">
+          <%= orders[0].name %><br>
+          <%= orders[0].phone_number%>
+        </div>
        </div>
 
 

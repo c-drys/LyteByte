@@ -1,3 +1,42 @@
+                                                                                     # mid-terms
+                                                                                     LHL: W6: a food pickup app 
+=========
+
+## LyteByte
+
+This is a project chosen from a list of ideas given to students at lighthouse labs for their midterm project.
+
+Option 7: Food Pick-up Ordering
+
+LyteByte is a food ordering experience for a single restaurant. Hungry clients of this fictitious restaurant can visit its website, login and select one or more items and place an order for pick-up. They will receive a notification when their order is ready via SMS.
+
+The restaurant and client both need to be notified since this app serves as an intermediary.
+
+The restaurant is alerted of orders as live updates are rendered to their page.
+
+The restaurant is able update the customer of their order status via SMS, users can also see updates live updates on their order page in the app.  
+ 
+Twilio is used to implement SMS communication from the website to the user client.
+
+
+## Final Product
+
+## LyteByte HomePage & Login 
+!["login - desk](https://github.com/drystar/LyteByte/blob/master/docs/login-desk.png?raw=true)
+
+# user order placed & status
+!["user order - mob](https://github.com/drystar/LyteByte/blob/master/docs/order-status-mob.png?raw=true)
+
+
+Future Stretch Activites the Group Considered
+=========
+
+- User Registration
+- Payment Processing 
+- Users Feedback & Reviews
+
+
+
 LHL Node Skeleton
 =========
 
